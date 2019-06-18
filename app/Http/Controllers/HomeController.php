@@ -40,6 +40,12 @@ class HomeController extends Controller
             $input->name = 'Input 2';
             $input->consumption = 20;
             $input->save();
+        }
+
+        if(setting::all()->count() <= 0){
+            $setting = new setting();
+            $setting->rate = 100;
+            $setting->save();
 
         }
 
