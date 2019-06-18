@@ -29,6 +29,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
     <style>
+        .error{
+            color:darkred;
+            text-align: center;
+        }
+
         .btn-primary{
             background-color:#b6d44e !important;
             border:none;
@@ -54,28 +59,36 @@
 
             @csrf
 
-            @foreach($errors as $error)
-
-                <div class="alert alert-danger">{{$error}}</div>
-            @endforeach
 
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" name="name" placeholder="Full name">
+                <input type="text" class="form-control" name="name" placeholder="Full name" value="{{old('name')}}">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                @if($errors->has('name'))
+                    <span class="error col-md-12">{{$errors->first('name')}}</span>
+                @endif
             </div>
 
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" name="phone" placeholder="Phone">
+                <input type="text" class="form-control" name="phone" placeholder="Phone" value="{{old('phone')}}">
                 <span class="glyphicon glyphicon-phone-alt form-control-feedback"></span>
+                @if($errors->has('phone'))
+                    <span class="error col-md-12">{{$errors->first('phone')}}</span>
+                @endif
             </div>
 
             <div class="form-group has-feedback">
-                <input type="email" class="form-control" name="email" placeholder="Email">
+                <input type="email" class="form-control" name="email" placeholder="Email" value="{{old('email')}}">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                @if($errors->has('email'))
+                    <span class="error col-md-12">{{$errors->first('email')}}</span>
+                @endif
             </div>
             <div class="form-group has-feedback">
                 <input type="password" class="form-control" name="password" placeholder="Password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                @if($errors->has('password'))
+                    <span class="error col-md-12">{{$errors->first('password')}}</span>
+                @endif
             </div>
             <div class="form-group has-feedback">
                 <input type="password" class="form-control" name="password_confirmation" placeholder="Retype password">
