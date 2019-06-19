@@ -19,6 +19,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('config',function(){
+    $responseString = '';
     $inputs = \App\input::all();
-    return $inputs;
+
+    foreach($inputs as $input){
+        $responseString .= $input->iid . ',' . $input->status . ";";
+    }
+
+    return $responseString;
 });
