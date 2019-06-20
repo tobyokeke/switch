@@ -23,8 +23,12 @@ Route::get('config',function(){
     $inputs = \App\input::all();
 
     foreach($inputs as $input){
-        $responseString .= $input->iid . ',' . $input->status . ";";
-    }
+
+      if($input->status == 'on'){
+$responseString .= 1;
+} else $responseString .= 0;
+        
+   }
 
     return $responseString;
 });
